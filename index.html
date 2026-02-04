@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidential Log ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff5f7; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; text-align: center; }
+        .container { background: white; width: 85%; max-width: 380px; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; z-index: 10; overflow-y: auto; max-height: 90vh; }
+        img { width: 100%; border-radius: 15px; margin-bottom: 15px; border: 3px solid #ff4d6d; object-fit: cover; max-height: 250px; }
+        h1 { color: #ff4d6d; font-size: 1.1rem; margin-bottom: 20px; }
+        .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        button { background: #ff4d6d; color: white; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.3s; font-size: 0.85rem; }
+        #noBtn { background: #fce4ec; color: #ff4d6d; position: relative; transition: 0.1s; }
+        
+        .romantic-text { font-family: 'Georgia', serif; font-style: italic; color: #5a3d42; line-height: 1.8; font-size: 0.95rem; text-align: left; padding: 10px; }
+        .signature { text-align: right; font-weight: bold; color: #ff4d6d; margin-top: 20px; font-size: 1rem; }
+
+        .shake { animation: shake 0.3s; }
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(10px); } 50% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
+
+        .celebration { position: absolute; pointer-events: none; border-radius: 50%; z-index: 100; }
+        @keyframes flyUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-120vh); opacity: 0; } }
+        @keyframes burst { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(5); opacity: 0; } }
+        
+        #error-msg { color: #d32f2f; font-weight: bold; font-size: 0.8rem; min-height: 25px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main-card">
+    <div id="p0">
+        <img src="us1.jpg">
+        <h1>Will you be my Valentine, Kokku? 🌹</h1>
+        <div style="display:flex; justify-content:center; gap:15px;">
+            <button onclick="handleCorrect(0)">Yes!</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+        </div>
+    </div>
+
+    <div id="p1" style="display:none;">
+        <h1>Q1: When did I officially propose to you? 💍</h1>
+        <div class="options">
+            <button onclick="handleWrong('Wrong! I will find you in the interview... 🔪')">June 18</button>
+            <button onclick="handleWrong('Do you even love me? 😂')">June 19</button>
+            <button onclick="handleCorrect(1)">June 20</button>
+            <button onclick="handleWrong('I am calling your boss right now! 🏃‍♂️')">June 21</button>
+        </div>
+    </div>
+
+    <div id="p2" style="display:none;">
+        <h1>Q2: When did you finally say YES to me? 🥰</h1>
+        <div class="options">
+            <button onclick="handleWrong('Nope! Prepare for my revenge... 🙄')">July 1</button>
+            <button onclick="handleCorrect(2)">July 4</button>
+            <button onclick="handleWrong('I will haunt your dreams for this! 💀')">July 10</button>
+            <button onclick="handleWrong('Wrong! Say goodbye to your peace. 😤')">July 20</button>
+        </div>
+    </div>
+
+    <div id="p3" style="display:none;">
+        <img src="us1.jpg">
+        <h1>Q3: When was this picture taken? 📸</h1>
+        <div class="options">
+            <button onclick="handleWrong('Wrong! Just you wait... 🥊')">Nov 2022</button>
+            <button onclick="handleCorrect(3)">Nov 2020</button>
+            <button onclick="handleWrong('Focus or I am finding you! 🕵️‍♂️')">Jan 2021</button>
+            <button onclick="handleWrong('Serious? I expected more. 😤')">Dec 2020</button>
+        </div>
+    </div>
+
+    <div id="p4" style="display:none;">
+        <h1>Where should our next chapter begin? ✈️🌍</h1>
+        <div class="options">
+            <button onclick="handleCorrect(4, true)">Himalayas 🏔️</button>
+            <button onclick="handleCorrect(4, true)">Thailand 🇹🇭</button>
+            <button onclick="handleCorrect(4, true)">Vietnam 🇻🇳</button>
+            <button onclick="handleCorrect(4, true)">Sri Lanka 🇱🇰</button>
+            <button onclick="handleCorrect(4, true)">Nepal 🇳🇵</button>
+            <button onclick="handleCorrect(4, true)">Japan 🌸</button>
+        </div>
+    </div>
+
+    <div id="p5" style="display:none;">
+        <h1 style="font-size: 1.8rem;">🎉 Finally! 🎉</h1>
+        <h2 style="color: #ff4d6d;">Assessment Complete</h2>
+        <p>Even if it took you a few tries, I know your heart knows the truth. You are my better half.</p>
+        <button onclick="showFinal()" style="margin-top: 20px; width: 100%;">Read My Letter ❤️</button>
+    </div>
+
+    <div id="p6" style="display:none;">
+        <img src="us2.jpg">
+        <h1>For My Dearest Kokku... ❤️</h1>
+        <div class="romantic-text">
+            <p>"They say that in a lifetime, we find many people, but only one soul who feels like home. To me, Kokku, that home has always been you."</p>
+            <p>"Every memory we've shared is a story I want to tell forever. You are the melody in my favorite song and the most beautiful page in my book."</p>
+            <p>"There is no one else I’d rather have by my side. You are my greatest adventure and my favorite destination."</p>
+            <div class="signature">Forever yours, always. ✨💍</div>
+        </div>
+    </div>
+
+    <p id="error-msg"></p>
+</div>
+
+<script>
+    function createBalloons() {
+        for (let i = 0; i < 15; i++) {
+            const b = document.createElement('div');
+            b.className = 'celebration';
+            b.style.left = Math.random() * 100 + 'vw';
+            b.style.bottom = '-50px';
+            b.style.width = '30px'; b.style.height = '40px';
+            b.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            b.style.borderRadius = '50%';
+            b.style.animation = `flyUp 3s linear forwards`;
+            document.body.appendChild(b);
+            setTimeout(() => b.remove(), 3000);
+        }
+    }
+
+    function triggerFireworks() {
+        for (let i = 0; i < 12; i++) {
+            setTimeout(() => {
+                const f = document.createElement('div');
+                f.className = 'celebration';
+                f.style.left = Math.random() * 80 + 10 + 'vw';
+                f.style.top = Math.random() * 80 + 10 + 'vh';
+                f.style.width = '8px'; f.style.height = '8px';
+                f.style.background = 'gold';
+                f.style.boxShadow = '0 0 20px 10px gold, 0 0 40px 20px white';
+                f.style.animation = 'burst 0.8s ease-out forwards';
+                document.body.appendChild(f);
+                setTimeout(() => f.remove(), 800);
+            }, i * 250);
+        }
+    }
+
+    function moveNo() {
+        const btn = document.getElementById('noBtn');
+        btn.style.position = 'fixed';
+        btn.style.left = Math.random() * (window.innerWidth - 80) + 'px';
+        btn.style.top = Math.random() * (window.innerHeight - 40) + 'px';
+        btn.style.zIndex = '1000';
+    }
+
+    function handleCorrect(current, isLast = false) {
+        document.getElementById('error-msg').innerText = "";
+        createBalloons();
+        if (isLast) triggerFireworks();
+        setTimeout(() => {
+            document.getElementById('p' + current).style.display = 'none';
+            document.getElementById('p' + (current + 1)).style.display = 'block';
+        }, 800);
+    }
+
+    function showFinal() {
+        document.getElementById('p5').style.display = 'none';
+        document.getElementById('p6').style.display = 'block';
+    }
+
+    function handleWrong(msg) {
+        document.getElementById('error-msg').innerText = msg;
+        const card = document.getElementById('main-card');
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 300);
+    }
+</script>
+</body>
+</html>
